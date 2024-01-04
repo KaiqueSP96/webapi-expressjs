@@ -4,14 +4,7 @@ const customers = [
         name: "Kaique",
         age: 26,
         uf: "SP"
-    },
-    {
-        id: 2,
-        name: "Fernanda",
-        age: 30,
-        uf: "SP"
     }
-
 ];
 
 function selectCustomers() {
@@ -22,7 +15,26 @@ function selectCustomer(id) {
     return customers.find(c => c.id === id)
 }
 
+function insertCustomer (customer) {
+    customers.push(customer);
+}
+
+function updateCustomer (id, customerData) {
+    const customer = customers.find(c => c.id === id);
+    customer.name = customerData.name;
+    customer.age = customerData.age;
+    customer.uf = customerData.uf
+}
+
+function deleteCustomer(id) {
+    const index = customers.findIndex(c => c.id === id);
+    customers.splice(index, 1)
+}
+
 module.exports = {
     selectCustomers,
-    selectCustomer
+    selectCustomer,
+    insertCustomer,
+    updateCustomer,
+    deleteCustomer
 }
