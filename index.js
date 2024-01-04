@@ -7,32 +7,32 @@ const db = require('./db.js');
 app.use(express.json());
 
 
-app.delete("/customer/:id", (req, res) =>{
-  const id = parseInt(req.params.id);
+app.delete("/customer/:id", (request, response) =>{
+  const id = parseInt(request.params.id);
   db.deleteCustomer(id);
-  res.sendStatus(204)
+  response.sendStatus(204)
 })
 
-app.patch("/customer/:id", (req, res) => {
-  const id = parseInt(req.params.id)
-  const customer = req.body;
+app.patch("/customer/:id", (request, response) => {
+  const id = parseInt(request.params.id)
+  const customer = request.body;
   db.updateCustomer(id, customer);
-  res.sendStatus(200);
+  response.sendStatus(200);
 })
 
-app.post("/customer", (req, res) => {
-  const customer = req.body;
+app.post("/customer", (request, response) => {
+  const customer = request.body;
   db.insertCustomer(customer);
-  res.sendStatus(201);
+  response.sendStatus(201);
 })
 
-app.get("/customer", (req, res) => {
-  res.json(db.selectCustomers());
+app.get("/customer", (request, response) => {
+  response.json(db.selectCustomers());
 })
 
-app.get("/customer/:id", (req, res) => {
-  const id = parseInt(req.params.id)
-  res.json(db.selectCustomer(id));
+app.get("/customer/:id", (request, response) => {
+  const id = parseInt(request.params.id)
+  response.json(db.selectCustomer(id));
 })
 
 
